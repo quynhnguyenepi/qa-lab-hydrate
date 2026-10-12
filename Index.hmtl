@@ -1,0 +1,22 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>QA Lab</title>
+<script src="https://cdn.optimizely.com/js/4868003032989696.js"></script>
+<style>body{font-family:sans-serif;margin:0}#promo-banner{height:48px;background:#ffe9a8;padding:12px}
+@media (max-width:600px){.desktop-only{display:none}}
+#late-slot{min-height:40px;border:1px dashed #ccc;padding:8px}</style></head><body>
+<div id="promo-banner">Free shipping this week</div><h1 id="hero-title">QA Lab</h1>
+<a id="cta-primary" href="#">Buy now</a><p id="price">$10</p>
+<section><h2>Features</h2><p>Fast</p></section><section><h2>FAQ</h2><p>Answers</p></section>
+<div class="desktop-only" id="desktop-note">Desktop only note</div>
+<!-- C40: the variation inserts content into #late-slot; "hydration" wipes it at 1200 ms -->
+<div id="late-slot"></div>
+<!-- C41: the variation changes this text; "hydration" puts the original text back at 1200 ms -->
+<p id="hydrate-headline">Original headline</p>
+<script>
+  // Simulates framework hydration: the client re-renders from server state and discards DOM edits.
+  setTimeout(function () {
+    document.getElementById('late-slot').innerHTML = '';
+    document.getElementById('hydrate-headline').textContent = 'Original headline';
+  }, 1200);
+</script>
+</body></html>
